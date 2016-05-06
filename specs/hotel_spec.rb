@@ -19,33 +19,41 @@ class TestHotel < Minitest::Test
 
     @hotel_1 = Hotel.new(rooms)
   end
+  
 
-  def test_number_rooms_in_hotel()
+  def test_number_rooms_in_hotel
     assert_equal(3, @hotel_1.rooms.count)
   end
 
+  def test_room_exists_in_hotel?
+    assert_equal(true, @hotel_1.room_exists_in_hotel?( @room_1 ))
+    assert_equal(false, @hotel_1.room_exists_in_hotel?( @room_5 ))
+  end
+
   def test_check_in
-    @hotel_1.check_in(1, @guest_1)
-    assert_equal(false, @room_1.room_empty?)
+    @hotel_1.check_in(@room_1, @guest_1)
+    assert_equal(false, @room_1.available)
     assert_equal(@guest_1, @room_1.guests[0])
-    @hotel_1.check_in(2, @guest_2)
-    assert_equal(false, @room_2.room_empty?)
+
+    @hotel_1.check_in(@room_2, @guest_2)
+    assert_equal(false, @room_2.available)
     assert_equal(@guest_2, @room_2.guests[0])
   end 
 
   def test_check_out
-    @hotel_1.check_in(1, @guest_1)
-    @hotel_1.check_out(1, @guest_1)
-    assert_equal(true, @room_1.room_empty?)
+    @hotel_1.check_in(@room_1, @guest_1)
+    @hotel_1.check_out(@room_1, @guest_1)
+    assert_equal(true, @room_1.available)
     assert_equal(nil, @room_1.guests[0])
-    @hotel_1.check_in(2, @guest_2)
-    @hotel_1.check_out(2, @guest_2)
-    assert_equal(true, @room_2.room_empty?)
+
+    @hotel_1.check_in(@room_2, @guest_2)
+    @hotel_1.check_out(@room_2, @guest_2)
+    assert_equal(true, @room_2.available)
     assert_equal(nil, @room_2.guests[0])
   end 
 
   def test_guests_currently_in_room()
-    @hotel_1.check_in(1, @guest_1)
+    @hotel_1.check_in(@room_1, @guest_1)
     assert_equal("Rupert Barley", @hotel_1.guests_currently_in_room(@room_1))
   end
 
