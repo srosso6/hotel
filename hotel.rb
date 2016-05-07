@@ -55,15 +55,6 @@ class Hotel
     return suitable_rooms
   end
 
-  def guests_in_hotel()
-    guests = []
-    @rooms.each do
-  end
-
-  # group bookings
-  # sea view or garden view
-  # standard or deluxe
-
 end
 
 

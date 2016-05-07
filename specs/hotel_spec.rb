@@ -15,6 +15,7 @@ class TestHotel < Minitest::Test
   def setup
     @guest_1 = Guest.new("Rupert", "Barley")
     @guest_2 = Guest.new("Georgina", "Barley")
+    @guest_3 = Guest.new("Rodney", "Sharp")
 
     @room_1 = TwinRoom.new(1)
     @room_2 = DoubleRoom.new(2)
