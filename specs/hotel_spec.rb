@@ -8,6 +8,7 @@ require_relative("../rooms/twin_room.rb")
 require_relative("../rooms/double_room.rb")
 require_relative("../rooms/triple_room.rb")
 require_relative("../rooms/family_room.rb")
+require_relative("../room_service.rb")
 
 
 class TestHotel < Minitest::Test
@@ -30,6 +31,10 @@ class TestHotel < Minitest::Test
     rooms = [ @room_1, @room_2, @room_3, @room_4, @room_5, @room_6, @room_7, @room_8, @room_9 ]
 
     @hotel_1 = Hotel.new(rooms)
+
+    menu = { whiskey: 4, hot_chocolate: 2, water: 1, burger_and_chips: 7, carrot_cake: 2 }
+    @room_service = RoomService.new(menu)
+
   end
   
 

@@ -73,6 +73,28 @@ class TestRoom < Minitest::Test
     assert_equal(3, @room_1.max_persons)
   end
 
+  def test_calculate_final_bill
+    assert_equal(240,@room_1.calculate_final_bill(2))
+    assert_equal(240,@room_2.calculate_final_bill(2))
+    assert_equal(320,@room_3.calculate_final_bill(2))
+    assert_equal(360,@room_4.calculate_final_bill(2))
+    assert_equal(180,@room_5.calculate_final_bill(2))
+    @room_1.room_service = 12
+    assert_equal(252,@room_1.calculate_final_bill(2))
+  end
+
+  def test_discount_bill_by_value
+    @room_1.bill = 7
+    @room_1.discount_bill_by_value(7)
+    assert_equal(0, @room_1.bill)
+  end
+
+  def test_discount_bill_by_percentage
+    @room_1.bill = 120
+    @room_1.discount_bill_by_percentage(25)
+    assert_equal(90, @room_1.bill)
+  end
+
 
 end
 

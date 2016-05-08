@@ -7,16 +7,16 @@ class Hotel
   end
 
 
-  def room_exists_in_hotel?(room)
-    return @rooms.include?(room)
-  end
-
   def get_room_by_number(num)
     array = @rooms.select { |room| room.number == num }
     if array == []
       return :room_not_found
     end
     return array.first
+  end
+
+  def room_exists_in_hotel?(room)
+    return @rooms.include?(room)
   end
 
   def check_in(room, guests)
@@ -56,6 +56,9 @@ class Hotel
   end
 
 end
+
+
+
 
 
 
